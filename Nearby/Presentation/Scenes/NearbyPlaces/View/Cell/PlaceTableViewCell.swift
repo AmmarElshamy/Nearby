@@ -28,6 +28,7 @@ class PlaceTableViewCell: UITableViewCell {
     
     // MARK: Binding
     func bind(_ viewModel: PlaceCellViewModel) {
-        
+        placeNameLabel.text = viewModel.placeName
+        placeAddressLabel.text = viewModel.placeAddress
     }
 }

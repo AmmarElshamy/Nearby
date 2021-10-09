@@ -7,7 +7,13 @@
 
 import Foundation
 import RxSwift
+import RxRelay
 
-class PlacesListViewModel {
+struct PlacesListViewModel {
     private let disposeBag = DisposeBag()
+    let cellViewModels = BehaviorRelay<[PlaceCellViewModel]>(value: [])
+    
+    init() {
+        
+    }
 }

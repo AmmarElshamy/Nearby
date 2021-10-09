@@ -41,6 +41,29 @@ class PlacesListViewController: UIViewController {
     // MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViews()
+        bindViewModel()
     }
     
+    private func setupViews() {
+        setupPlacesTableView()
+    }
+    
+    private func setupPlacesTableView() {
+        placesTableView.register(
+            .create(for: PlaceTableViewCell.self),
+            forCellReuseIdentifier: PlaceTableViewCell.fileName
+        )
+    }
+    
+    private func bindViewModel() {
+        viewModel.cellViewModels.bind(to: placesTableView.rx.items) { tableView, index, viewModel in
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: PlaceTableViewCell.fileName,
+                for: IndexPath(row: index, section: 0)
+            )
+            (cell as? PlaceTableViewCell)?.bind(viewModel)
+            return cell
+        }.disposed(by: disposeBag)
+    }
 }
