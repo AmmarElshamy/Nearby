@@ -13,6 +13,14 @@
 		A0318B2B27107ECC00744D1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0318B2927107ECC00744D1D /* LaunchScreen.storyboard */; };
 		A0318B3627107ECD00744D1D /* NearbyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0318B3527107ECD00744D1D /* NearbyTests.swift */; };
 		A0318B5D2710D09500744D1D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0318B5C2710D09500744D1D /* AppCoordinator.swift */; };
+		A05C73752711828B00D4CDE5 /* PlacesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A05C73732711828B00D4CDE5 /* PlacesListViewController.swift */; };
+		A05C73762711828B00D4CDE5 /* PlacesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A05C73742711828B00D4CDE5 /* PlacesListViewController.xib */; };
+		A092499A271184440071968E /* PlacesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0924999271184440071968E /* PlacesListViewModel.swift */; };
+		A092499D2711A7110071968E /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A092499C2711A7110071968E /* Bundle+Extensions.swift */; };
+		A09249A12711A9500071968E /* PlaceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A092499F2711A9500071968E /* PlaceTableViewCell.swift */; };
+		A09249A22711A9500071968E /* PlaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A09249A02711A9500071968E /* PlaceTableViewCell.xib */; };
+		A09249A92711AE340071968E /* PlaceCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09249A82711AE340071968E /* PlaceCellViewModel.swift */; };
+		A09249AB2711AECB0071968E /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09249AA2711AECB0071968E /* ShadowView.swift */; };
 		A0FE947F27110206003A1F33 /* DiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE947E27110206003A1F33 /* DiManager.swift */; };
 		A0FE948327110905003A1F33 /* AppAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE948227110905003A1F33 /* AppAssembly.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +56,14 @@
 		A0318B3727107ECD00744D1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0318B3C27107ECD00744D1D /* NearbyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NearbyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0318B5C2710D09500744D1D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		A05C73732711828B00D4CDE5 /* PlacesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesListViewController.swift; sourceTree = "<group>"; };
+		A05C73742711828B00D4CDE5 /* PlacesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlacesListViewController.xib; sourceTree = "<group>"; };
+		A0924999271184440071968E /* PlacesListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesListViewModel.swift; sourceTree = "<group>"; };
+		A092499C2711A7110071968E /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		A092499F2711A9500071968E /* PlaceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceTableViewCell.swift; sourceTree = "<group>"; };
+		A09249A02711A9500071968E /* PlaceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceTableViewCell.xib; sourceTree = "<group>"; };
+		A09249A82711AE340071968E /* PlaceCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCellViewModel.swift; sourceTree = "<group>"; };
+		A09249AA2711AECB0071968E /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		A0FE947E27110206003A1F33 /* DiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiManager.swift; sourceTree = "<group>"; };
 		A0FE948227110905003A1F33 /* AppAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,7 +128,7 @@
 			children = (
 				A0318B5027109EEA00744D1D /* App */,
 				A0318B562710A30400744D1D /* Domain */,
-				A0318B4E27109EBF00744D1D /* Scenes */,
+				A0318B4E27109EBF00744D1D /* Presentation */,
 				A0318B4F27109ECA00744D1D /* Data */,
 				A0318B552710A0CF00744D1D /* Resources */,
 			);
@@ -128,12 +144,14 @@
 			path = NearbyTests;
 			sourceTree = "<group>";
 		};
-		A0318B4E27109EBF00744D1D /* Scenes */ = {
+		A0318B4E27109EBF00744D1D /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				A0318B512710A06C00744D1D /* NearbyPlaces */,
+				A092499B2711845A0071968E /* Scenes */,
+				A05C7379271183B100D4CDE5 /* Utils */,
+				A09249AC2711AED60071968E /* CustomViews */,
 			);
-			path = Scenes;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		A0318B4F27109ECA00744D1D /* Data */ = {
@@ -169,6 +187,9 @@
 		A0318B532710A0A600744D1D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A092499E2711A92B0071968E /* Cell */,
+				A05C73732711828B00D4CDE5 /* PlacesListViewController.swift */,
+				A05C73742711828B00D4CDE5 /* PlacesListViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -176,6 +197,8 @@
 		A0318B542710A0AC00744D1D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A0924999271184440071968E /* PlacesListViewModel.swift */,
+				A09249A82711AE340071968E /* PlaceCellViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -231,6 +254,39 @@
 			children = (
 			);
 			path = PresistentStorage;
+			sourceTree = "<group>";
+		};
+		A05C7379271183B100D4CDE5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A092499C2711A7110071968E /* Bundle+Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A092499B2711845A0071968E /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				A0318B512710A06C00744D1D /* NearbyPlaces */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		A092499E2711A92B0071968E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A092499F2711A9500071968E /* PlaceTableViewCell.swift */,
+				A09249A02711A9500071968E /* PlaceTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		A09249AC2711AED60071968E /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				A09249AA2711AECB0071968E /* ShadowView.swift */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		A0FE947D271101E5003A1F33 /* Managers */ = {
@@ -374,6 +430,8 @@
 			files = (
 				A0318B2B27107ECC00744D1D /* LaunchScreen.storyboard in Resources */,
 				A0318B2827107ECC00744D1D /* Assets.xcassets in Resources */,
+				A05C73762711828B00D4CDE5 /* PlacesListViewController.xib in Resources */,
+				A09249A22711A9500071968E /* PlaceTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,10 +498,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A09249AB2711AECB0071968E /* ShadowView.swift in Sources */,
 				A0FE947F27110206003A1F33 /* DiManager.swift in Sources */,
+				A09249A92711AE340071968E /* PlaceCellViewModel.swift in Sources */,
 				A0FE948327110905003A1F33 /* AppAssembly.swift in Sources */,
 				A0318B5D2710D09500744D1D /* AppCoordinator.swift in Sources */,
+				A09249A12711A9500071968E /* PlaceTableViewCell.swift in Sources */,
+				A05C73752711828B00D4CDE5 /* PlacesListViewController.swift in Sources */,
 				A0318B1F27107ECA00744D1D /* AppDelegate.swift in Sources */,
+				A092499A271184440071968E /* PlacesListViewModel.swift in Sources */,
+				A092499D2711A7110071968E /* Bundle+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
