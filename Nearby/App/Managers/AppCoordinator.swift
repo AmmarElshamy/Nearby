@@ -14,7 +14,8 @@ class AppCoordinator {
     }
     
     static func start() {
-        let rootNavigationController = UINavigationController()
+        let viewController = PlacesListViewController.create()
+        let rootNavigationController = UINavigationController(rootViewController: viewController)
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
     }

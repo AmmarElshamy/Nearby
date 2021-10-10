@@ -11,5 +11,4 @@ struct Place {
     let id: String
     let name: String
     let address: String
-    let imageURL: String?
 }

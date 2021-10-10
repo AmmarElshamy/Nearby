@@ -13,7 +13,7 @@ class PlacesListViewController: UIViewController {
     
     // MARK: Creator
     static func create() -> PlacesListViewController {
-        let viewModel = PlacesListViewModel()
+        let viewModel = DiManager.assembler.resolver.resolve(PlacesListViewModel.self)!
         let vc = PlacesListViewController(viewModel)
         return vc
     }
@@ -46,7 +46,12 @@ class PlacesListViewController: UIViewController {
     }
     
     private func setupViews() {
+        setupNavigationBar()
         setupPlacesTableView()
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.title = "Places"
     }
     
     private func setupPlacesTableView() {

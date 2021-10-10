@@ -10,11 +10,9 @@ import Foundation
 struct PlaceCellViewModel {
     let placeName: String
     let placeAddress: String
-    let placeImageURL: String?
     
     init(place: Place) {
         placeName = place.name
         placeAddress = place.address
-        placeImageURL = place.imageURL
     }
 }

@@ -22,8 +22,6 @@ class PlaceTableViewCell: UITableViewCell {
     }
     
     private func setupViews() {
-        containerView.layer.cornerRadius = 8
-        containerView.layer.masksToBounds = true
     }
     
     // MARK: Binding

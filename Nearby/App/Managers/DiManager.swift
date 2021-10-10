@@ -9,19 +9,13 @@ import UIKit
 import Swinject
 
 enum DiManager {
-    private static var assembler: Assembler? {
-        get {
-            return AppDelegate.shared.assembler
-        }
-        set {
-            AppDelegate.shared.assembler = newValue
-        }
-    }
+    static var assembler: Assembler = {
+        let container = Container()
+        return Assembler(container: container)
+    }()
     
     static func assembleDependency() {
-        let container = Container()
-        assembler = Assembler(container: container)
-        assembler?.apply(assemblies: [
+        assembler.apply(assemblies: [
             AppAssembly()
         ])
     }
