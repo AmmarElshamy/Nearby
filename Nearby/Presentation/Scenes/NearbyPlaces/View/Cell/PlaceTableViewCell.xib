@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C0c-bF-NIo" customClass="ShadowView" customModule="Nearby" customModuleProvider="target">
-                        <rect key="frame" x="10" y="10" width="705" height="170"/>
+                        <rect key="frame" x="5" y="5" width="715" height="170"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="F5v-yW-nlX">
                                 <rect key="frame" x="10" y="10" width="660" height="150"/>
@@ -79,9 +79,9 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="C0c-bF-NIo" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="N1i-MZ-COF"/>
-                    <constraint firstItem="C0c-bF-NIo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="YRt-s7-eBc"/>
+                    <constraint firstItem="C0c-bF-NIo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="YRt-s7-eBc"/>
                     <constraint firstItem="C0c-bF-NIo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eXL-s6-1SG"/>
-                    <constraint firstItem="C0c-bF-NIo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="yjT-IV-9uD"/>
+                    <constraint firstItem="C0c-bF-NIo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="yjT-IV-9uD"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

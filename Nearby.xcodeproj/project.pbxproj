@@ -39,6 +39,7 @@
 		A09249D4271246410071968E /* PlacesAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09249D3271246410071968E /* PlacesAPIs.swift */; };
 		A09249D627124C340071968E /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09249D527124C340071968E /* DateManager.swift */; };
 		A09249D8271307CA0071968E /* RxSwift+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09249D7271307CA0071968E /* RxSwift+Extensions.swift */; };
+		A09249DA271344690071968E /* PlacePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09249D9271344690071968E /* PlacePhoto.swift */; };
 		A0FE947F27110206003A1F33 /* DiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE947E27110206003A1F33 /* DiManager.swift */; };
 		A0FE948327110905003A1F33 /* AppAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE948227110905003A1F33 /* AppAssembly.swift */; };
 /* End PBXBuildFile section */
@@ -100,6 +101,7 @@
 		A09249D3271246410071968E /* PlacesAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAPIs.swift; sourceTree = "<group>"; };
 		A09249D527124C340071968E /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		A09249D7271307CA0071968E /* RxSwift+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxSwift+Extensions.swift"; sourceTree = "<group>"; };
+		A09249D9271344690071968E /* PlacePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePhoto.swift; sourceTree = "<group>"; };
 		A0FE947E27110206003A1F33 /* DiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiManager.swift; sourceTree = "<group>"; };
 		A0FE948227110905003A1F33 /* AppAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -263,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				A09249AD2711B28E0071968E /* Place.swift */,
+				A09249D9271344690071968E /* PlacePhoto.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				A09249BE2711F0A20071968E /* APIClient.swift in Sources */,
 				A09249D627124C340071968E /* DateManager.swift in Sources */,
 				A09249C12711F2A80071968E /* PlacesApiService.swift in Sources */,
+				A09249DA271344690071968E /* PlacePhoto.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

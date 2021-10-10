@@ -10,6 +10,7 @@ import RxSwift
 
 protocol PlacesUseCase {
     func getPlaces(offset: Int, limit: Int, location: Location) -> Single<PaginationResult<[Place]>>
+    func getPlacePhoto(placeID: String) -> Single<AppResult<PlacePhoto>>
 }
 
 struct placesUseCaseImp: PlacesUseCase {
@@ -33,13 +34,13 @@ struct placesUseCaseImp: PlacesUseCase {
         }
     }
     
-    func getPlacePhoto(placeID: String) -> Single<AppResult<String>> {
+    func getPlacePhoto(placeID: String) -> Single<AppResult<PlacePhoto>> {
         let date = DateManager.getCurrentDate()
         
         return service.getPlacePhoto(placeID: placeID, date: date).map { result in
             if result.meta.code == .success,
-               let urlString = result.response.photos.items.first?.mapped {
-                return .success(data: urlString)
+               let photo = result.response.photos.items.first?.mapped {
+                return .success(data: .init(placeID: placeID, photoURL: photo))
             } else {
                 return .failure(errorMessage: .somethingWentWrong, statusCode: result.meta.code)
             }

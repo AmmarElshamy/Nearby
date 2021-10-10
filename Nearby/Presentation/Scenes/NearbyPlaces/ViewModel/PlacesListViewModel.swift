@@ -62,6 +62,8 @@ class PlacesListViewModel {
                     self.cellViewModels.accept(models)
                     self.totalCount = totalCount
                     
+                    self.fetchPhotos(of: places)
+
                 case let .failure(errorMessage, statusCode):
                     print(errorMessage, statusCode)
                 }
@@ -98,6 +100,8 @@ class PlacesListViewModel {
                     self.cellViewModels.accept(models)
                     self.totalCount = totalCount
                     
+                    self.fetchPhotos(of: places)
+                    
                 case let .failure(errorMessage, statusCode):
                     print(errorMessage, statusCode)
                 }
@@ -106,5 +110,33 @@ class PlacesListViewModel {
                 print(error.localizedDescription)
             }
         }.disposed(by: disposeBag)
+    }
+    
+    private func fetchPhotos(of places: [Place]) {
+        places.forEach({
+            fetchPlacePhoto(with: $0.id)
+        })
+    }
+    
+    private func fetchPlacePhoto(with id: String) {
+        placesUseCase.getPlacePhoto(placeID: id).observe(on: MainScheduler.instance).subscribe { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case let .success(photo):
+                var models = self.cellViewModels.value
+                if let index = models.firstIndex(where: { $0.placeID == photo.placeID }) {
+                    models[index].placePhoto = photo.photoURL
+                    self.cellViewModels.accept(models)
+                }
+                
+            case let .failure(errorMessage, statusCode):
+                print(errorMessage, statusCode)
+            }
+            
+        } onFailure: { error in
+            print(error.localizedDescription)
+        }.disposed(by: disposeBag)
+
     }
 }

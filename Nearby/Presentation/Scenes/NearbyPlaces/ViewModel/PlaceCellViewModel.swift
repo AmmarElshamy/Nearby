@@ -8,11 +8,13 @@
 import Foundation
 
 struct PlaceCellViewModel {
+    let placeID: String
     let placeName: String
     let placeAddress: String
-    let placePhoto: String? = nil
+    var placePhoto: String? = nil
     
     init(place: Place) {
+        placeID = place.id
         placeName = place.name
         placeAddress = place.address
     }
