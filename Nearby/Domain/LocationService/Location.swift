@@ -9,11 +9,27 @@ import Foundation
 import CoreLocation
 
 struct Location {
-    let longitude: Double
-    let latitude: Double
+    private let location: CLLocation
+    
+    var latitude: Double {
+        location.coordinate.latitude
+    }
+    
+    var longitude: Double {
+        location.coordinate.longitude
+    }
     
     init(_ location: CLLocation) {
-        longitude = location.coordinate.longitude
-        latitude = location.coordinate.latitude
+        self.location = location
+    }
+    
+    func isFar(from location: Location, distance: Double) -> Bool {
+        self.location.distance(from: location.location) > distance
+    }
+}
+
+extension Location {
+    static var dummy: Location {
+        .init(.init(latitude: 0, longitude: 0))
     }
 }

@@ -21,10 +21,14 @@ class LocationServiceImp: NSObject, LocationService {
     init(locationManager: LocationManager) {
         self.locationManager = locationManager
         super.init()
+        
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.delegate = self
+
     }
     
     func getCurrentLocation() -> Observable<Location> {
-        locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         return locationSubject.asObservable()
     }

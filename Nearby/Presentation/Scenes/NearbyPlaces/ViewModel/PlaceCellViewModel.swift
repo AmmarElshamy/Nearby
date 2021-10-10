@@ -10,6 +10,7 @@ import Foundation
 struct PlaceCellViewModel {
     let placeName: String
     let placeAddress: String
+    let placePhoto: String? = nil
     
     init(place: Place) {
         placeName = place.name

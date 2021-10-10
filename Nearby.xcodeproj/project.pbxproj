@@ -38,6 +38,7 @@
 		A09249D2271242A50071968E /* DataConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09249D1271242A50071968E /* DataConstants.swift */; };
 		A09249D4271246410071968E /* PlacesAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09249D3271246410071968E /* PlacesAPIs.swift */; };
 		A09249D627124C340071968E /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09249D527124C340071968E /* DateManager.swift */; };
+		A09249D8271307CA0071968E /* RxSwift+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09249D7271307CA0071968E /* RxSwift+Extensions.swift */; };
 		A0FE947F27110206003A1F33 /* DiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE947E27110206003A1F33 /* DiManager.swift */; };
 		A0FE948327110905003A1F33 /* AppAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE948227110905003A1F33 /* AppAssembly.swift */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,7 @@
 		A09249D1271242A50071968E /* DataConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConstants.swift; sourceTree = "<group>"; };
 		A09249D3271246410071968E /* PlacesAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesAPIs.swift; sourceTree = "<group>"; };
 		A09249D527124C340071968E /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		A09249D7271307CA0071968E /* RxSwift+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxSwift+Extensions.swift"; sourceTree = "<group>"; };
 		A0FE947E27110206003A1F33 /* DiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiManager.swift; sourceTree = "<group>"; };
 		A0FE948227110905003A1F33 /* AppAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -294,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				A092499C2711A7110071968E /* Bundle+Extensions.swift */,
+				A09249D7271307CA0071968E /* RxSwift+Extensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				A0FE948327110905003A1F33 /* AppAssembly.swift in Sources */,
 				A09249D4271246410071968E /* PlacesAPIs.swift in Sources */,
 				A0318B5D2710D09500744D1D /* AppCoordinator.swift in Sources */,
+				A09249D8271307CA0071968E /* RxSwift+Extensions.swift in Sources */,
 				A09249A12711A9500071968E /* PlaceTableViewCell.swift in Sources */,
 				A05C73752711828B00D4CDE5 /* PlacesListViewController.swift in Sources */,
 				A0318B1F27107ECA00744D1D /* AppDelegate.swift in Sources */,

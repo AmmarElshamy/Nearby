@@ -70,5 +70,17 @@ class PlacesListViewController: UIViewController {
             (cell as? PlaceTableViewCell)?.bind(viewModel)
             return cell
         }.disposed(by: disposeBag)
+        
+        placesTableView
+            .rx
+            .willDisplayCell
+            .map({ $0.indexPath.row })
+            .subscribe(onNext: { [weak self]index in
+                guard let self = self else { return }
+                if index == self.placesTableView.numberOfRows(inSection: 0) - 4 {
+                    self.viewModel.fetchMorePlaces()
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
