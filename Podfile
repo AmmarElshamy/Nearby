@@ -34,6 +34,10 @@ target 'Nearby' do
   network_pods
   dependency_pods
   imageDownloader_pods
+  
+  target 'NearbyTests' do
+    reactive_pods
+  end
 
 end
 

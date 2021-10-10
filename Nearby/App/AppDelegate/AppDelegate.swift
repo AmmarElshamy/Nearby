@@ -20,7 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        
+        if #available(iOS 13.0, *) {
+            window?.overrideUserInterfaceStyle = .light
+        }
+
         DiManager.assembleDependency()
         AppCoordinator.start()
                 
