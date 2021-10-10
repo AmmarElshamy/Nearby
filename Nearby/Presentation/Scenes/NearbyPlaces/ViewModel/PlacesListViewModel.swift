@@ -15,6 +15,7 @@ class PlacesListViewModel {
     private let disposeBag = DisposeBag()
     private let locationSubject = BehaviorRelay<Location?>(value: nil)
     let cellViewModels = BehaviorRelay<[PlaceCellViewModel]>(value: [])
+    let state = BehaviorRelay<ViewState>(value: .loading)
     
     private var offset: Int {
         cellViewModels.value.count
@@ -34,6 +35,7 @@ class PlacesListViewModel {
             
         } onError: { error in
             print(error)
+            self.state.accept(.error)
         }.disposed(by: disposeBag)
 
         onLocationDidChange()
@@ -42,14 +44,15 @@ class PlacesListViewModel {
     private func onLocationDidChange() {
         locationSubject.skip(1).subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
-            self.cellViewModels.accept([])
             self.fetchPlaces()
         }).disposed(by: disposeBag)
     }
     
     func fetchPlaces() {
         guard let location = locationSubject.value else { return }
+        cellViewModels.accept([])
         
+        state.accept(.loading)
         placesUseCase.getPlaces(offset: 0, limit: 20, location: location).observe(on: MainScheduler.instance).subscribe { [weak self] result in
             guard let self = self else { return }
             
@@ -63,12 +66,20 @@ class PlacesListViewModel {
                     self.totalCount = totalCount
                     
                     self.fetchPhotos(of: places)
+                    
+                    if places.isEmpty {
+                        self.state.accept(.empty)
+                    } else {
+                        self.state.accept(.normal)
+                    }
 
                 case let .failure(errorMessage, statusCode):
+                    self.state.accept(.error)
                     print(errorMessage, statusCode)
                 }
                 
             case .failure(let error):
+                self.state.accept(.error)
                 print(error.localizedDescription)
             }
         }.disposed(by: disposeBag)
@@ -139,4 +150,12 @@ class PlacesListViewModel {
         }.disposed(by: disposeBag)
 
     }
+}
+
+// MARK: View State
+enum ViewState {
+    case normal
+    case empty
+    case loading
+    case error
 }

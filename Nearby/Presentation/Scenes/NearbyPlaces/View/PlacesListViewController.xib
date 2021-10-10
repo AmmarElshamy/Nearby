@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlacesListViewController" customModule="Nearby" customModuleProvider="target">
             <connections>
+                <outlet property="loaderView" destination="6Vb-Dp-zyJ" id="jqL-rS-S9u"/>
                 <outlet property="placesTableView" destination="TZ4-pU-f4c" id="mhA-nm-vLa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,12 +25,17 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <color key="backgroundColor" red="0.96862745098039216" green="0.96078431372549022" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="6Vb-Dp-zyJ">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="TZ4-pU-f4c" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="2KG-Hu-hob"/>
+                <constraint firstItem="6Vb-Dp-zyJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="4hY-9H-ggG"/>
                 <constraint firstItem="TZ4-pU-f4c" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="UEH-q0-FD1"/>
+                <constraint firstItem="6Vb-Dp-zyJ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="dcI-a4-CZR"/>
                 <constraint firstAttribute="bottom" secondItem="TZ4-pU-f4c" secondAttribute="bottom" id="mcd-gU-G5a"/>
                 <constraint firstItem="TZ4-pU-f4c" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="vgr-Ze-E53"/>
             </constraints>

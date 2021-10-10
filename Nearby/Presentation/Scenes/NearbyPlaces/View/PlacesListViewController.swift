@@ -19,7 +19,13 @@ class PlacesListViewController: UIViewController {
     }
     
     // MARK: Outlets
+    @IBOutlet var loaderView: UIActivityIndicatorView!
     @IBOutlet var placesTableView: UITableView!
+    
+    // MARK: CustomViews
+    private lazy var tableBackgroundView = {
+        TableBackgroundView()
+    }()
     
     // MARK: Properties
     private let viewModel: PlacesListViewModel
@@ -43,6 +49,7 @@ class PlacesListViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         bindViewModel()
+        subscribeOnState()
     }
     
     private func setupViews() {
@@ -82,5 +89,42 @@ class PlacesListViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func subscribeOnState() {
+        viewModel.state.subscribe(onNext: { [weak self] state in
+            guard let self = self else { return }
+            
+            switch state {
+            case .normal:
+                self.loaderView.stopAnimating()
+                self.placesTableView.backgroundView = nil
+                self.configureTableViewVisibility(isHidden: false)
+                
+            case .empty:
+                self.loaderView.stopAnimating()
+                self.tableBackgroundView.set(state: .empty)
+                self.placesTableView.backgroundView = self.tableBackgroundView
+                self.configureTableViewVisibility(isHidden: false)
+                
+            case .loading:
+                self.loaderView.isHidden = false
+                self.loaderView.startAnimating()
+                self.configureTableViewVisibility(isHidden: true)
+                
+            case .error:
+                self.loaderView.stopAnimating()
+                self.tableBackgroundView.set(state: .error)
+                self.placesTableView.backgroundView = self.tableBackgroundView
+                self.configureTableViewVisibility(isHidden: false)
+                
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    private func configureTableViewVisibility(isHidden: Bool) {
+        UIView.animate(withDuration: 0.2) {
+            self.placesTableView.alpha = isHidden ? 0 : 1
+        }
     }
 }
