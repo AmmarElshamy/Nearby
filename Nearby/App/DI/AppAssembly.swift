@@ -12,6 +12,7 @@ import CoreLocation
 class AppAssembly: Assembly {
     func assemble(container: Container) {
         handleLocationServiceRegistration(container: container)
+        registerPreferencesManager(in: container)
         registerPlacesListViewModel(in: container)
     }
     
@@ -33,10 +34,19 @@ class AppAssembly: Assembly {
         }
     }
     
+    private func registerPreferencesManager(in container: Container) {
+        container.register(PreferencesManager.self) { _ in
+            PreferencesManagerImp()
+        }.inObjectScope(.container)
+    }
+    
     private func registerPlacesListViewModel(in container: Container) {
         container.register(PlacesListViewModel.self) { resolver in
             let locationService = resolver.resolve(LocationService.self)!
-            return PlacesListViewModel(placesUseCase: placesUseCaseImp(service: APIClient()), locationService: locationService)
+            let preferencesManager = resolver.resolve(PreferencesManager.self)!
+            let placesUseCase = placesUseCaseImp(service: APIClient(), preferencesManager: preferencesManager)
+            
+            return PlacesListViewModel(placesUseCase: placesUseCase, locationService: locationService)
         }.inObjectScope(.transient)
     }
 }

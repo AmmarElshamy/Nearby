@@ -10,9 +10,10 @@ import CoreLocation
 
 protocol LocationManager: AnyObject {
     var delegate: CLLocationManagerDelegate? { get set }
+
     func requestWhenInUseAuthorization()
     func requestAlwaysAuthorization()
-    func requestLocation()
+    func startUpdatingLocation()
 }
 
 extension CLLocationManager: LocationManager {}

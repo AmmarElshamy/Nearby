@@ -15,7 +15,9 @@ class PlacesListViewModel {
     private let disposeBag = DisposeBag()
     private let locationSubject = BehaviorRelay<Location?>(value: nil)
     let cellViewModels = BehaviorRelay<[PlaceCellViewModel]>(value: [])
-    let state = BehaviorRelay<ViewState>(value: .loading)
+    let viewState = BehaviorRelay<ViewState>(value: .loading)
+    let mode: BehaviorRelay<Mode>
+    let modeButtonSubject = PublishRelay<Void>()
     
     private var offset: Int {
         cellViewModels.value.count
@@ -26,33 +28,55 @@ class PlacesListViewModel {
     init(placesUseCase: PlacesUseCase, locationService: LocationService) {
         self.placesUseCase = placesUseCase
         
+        let savedMode = placesUseCase.getSavedMode() ?? ""
+        mode = .init(value: Mode(rawValue: savedMode) ?? .realTime)
+        
+        getLocation(locationService: locationService)
+        onLocationChange()
+        onModeChange()
+    }
+    
+    private func getLocation(locationService: LocationService) {
         locationService.getCurrentLocation().subscribeOnUi { [weak self] location in
-            if let currentLocation = self?.locationSubject.value,
-               !currentLocation.isFar(from: location, distance: 500) {
-                return
+            if let currentLocation = self?.locationSubject.value {
+                if self?.mode.value == .singleUpdate || !currentLocation.isFar(from: location, distance: 500) {
+                    return
+                }
             }
             self?.locationSubject.accept(location)
             
         } onError: { error in
             print(error)
-            self.state.accept(.error)
+            self.cellViewModels.accept([])
+            self.viewState.accept(.error)
         }.disposed(by: disposeBag)
-
-        onLocationDidChange()
     }
     
-    private func onLocationDidChange() {
+    private func onLocationChange() {
         locationSubject.skip(1).subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
             self.fetchPlaces()
         }).disposed(by: disposeBag)
     }
     
+    private func onModeChange() {
+        modeButtonSubject.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            switch self.mode.value {
+            case .realTime:
+                self.mode.accept(.singleUpdate)
+            case .singleUpdate:
+                self.mode.accept(.realTime)
+            }
+            
+            self.placesUseCase.set(mode: self.mode.value.rawValue)
+        }).disposed(by: disposeBag)
+    }
+    
     func fetchPlaces() {
         guard let location = locationSubject.value else { return }
-        cellViewModels.accept([])
         
-        state.accept(.loading)
+        viewState.accept(.loading)
         placesUseCase.getPlaces(offset: 0, limit: 20, location: location).observe(on: MainScheduler.instance).subscribe { [weak self] result in
             guard let self = self else { return }
             
@@ -68,18 +92,20 @@ class PlacesListViewModel {
                     self.fetchPhotos(of: places)
                     
                     if places.isEmpty {
-                        self.state.accept(.empty)
+                        self.viewState.accept(.empty)
                     } else {
-                        self.state.accept(.normal)
+                        self.viewState.accept(.normal)
                     }
 
                 case let .failure(errorMessage, statusCode):
-                    self.state.accept(.error)
+                    self.cellViewModels.accept([])
+                    self.viewState.accept(.error)
                     print(errorMessage, statusCode)
                 }
                 
             case .failure(let error):
-                self.state.accept(.error)
+                self.cellViewModels.accept([])
+                self.viewState.accept(.error)
                 print(error.localizedDescription)
             }
         }.disposed(by: disposeBag)
@@ -158,4 +184,10 @@ enum ViewState {
     case empty
     case loading
     case error
+}
+
+// MARK: Mode
+enum Mode: String {
+    case realTime
+    case singleUpdate
 }

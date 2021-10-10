@@ -27,6 +27,10 @@ class PlacesListViewController: UIViewController {
         TableBackgroundView()
     }()
     
+    private let modeButton: UIBarButtonItem = {
+        UIBarButtonItem()
+    }()
+    
     // MARK: Properties
     private let viewModel: PlacesListViewModel
     private let disposeBag = DisposeBag()
@@ -59,6 +63,7 @@ class PlacesListViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationItem.title = "Places"
+        navigationItem.rightBarButtonItem = modeButton
     }
     
     private func setupPlacesTableView() {
@@ -69,6 +74,18 @@ class PlacesListViewController: UIViewController {
     }
     
     private func bindViewModel() {
+        
+        viewModel.mode.map({
+            switch $0 {
+            case .realTime:
+                return "Single Update"
+            case .singleUpdate:
+                return "Realtime"
+            }
+        }).bind(to: modeButton.rx.title).disposed(by: disposeBag)
+        
+        modeButton.rx.tap.bind(to: viewModel.modeButtonSubject).disposed(by: disposeBag)
+        
         viewModel.cellViewModels.bind(to: placesTableView.rx.items) { tableView, index, viewModel in
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: PlaceTableViewCell.fileName,
@@ -92,7 +109,7 @@ class PlacesListViewController: UIViewController {
     }
     
     private func subscribeOnState() {
-        viewModel.state.subscribe(onNext: { [weak self] state in
+        viewModel.viewState.subscribe(onNext: { [weak self] state in
             guard let self = self else { return }
             
             switch state {

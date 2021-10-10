@@ -41,6 +41,8 @@
 		A09249D8271307CA0071968E /* RxSwift+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09249D7271307CA0071968E /* RxSwift+Extensions.swift */; };
 		A09249DA271344690071968E /* PlacePhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09249D9271344690071968E /* PlacePhoto.swift */; };
 		A09249DC27134CF40071968E /* TableBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09249DB27134CF40071968E /* TableBackgroundView.swift */; };
+		A09249DF271354F40071968E /* PreferencesManagerImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09249DE271354F40071968E /* PreferencesManagerImp.swift */; };
+		A09249E12713552B0071968E /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09249E02713552B0071968E /* PreferencesManager.swift */; };
 		A0FE947F27110206003A1F33 /* DiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE947E27110206003A1F33 /* DiManager.swift */; };
 		A0FE948327110905003A1F33 /* AppAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE948227110905003A1F33 /* AppAssembly.swift */; };
 /* End PBXBuildFile section */
@@ -104,6 +106,8 @@
 		A09249D7271307CA0071968E /* RxSwift+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxSwift+Extensions.swift"; sourceTree = "<group>"; };
 		A09249D9271344690071968E /* PlacePhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacePhoto.swift; sourceTree = "<group>"; };
 		A09249DB27134CF40071968E /* TableBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableBackgroundView.swift; sourceTree = "<group>"; };
+		A09249DE271354F40071968E /* PreferencesManagerImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesManagerImp.swift; sourceTree = "<group>"; };
+		A09249E02713552B0071968E /* PreferencesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesManager.swift; sourceTree = "<group>"; };
 		A0FE947E27110206003A1F33 /* DiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiManager.swift; sourceTree = "<group>"; };
 		A0FE948227110905003A1F33 /* AppAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -256,7 +260,7 @@
 			children = (
 				A0318B572710A31000744D1D /* Entities */,
 				A0318B582710A31600744D1D /* UseCases */,
-				A09249BF2711F2430071968E /* Repository */,
+				A09249BF2711F2430071968E /* Interfaces */,
 				A09249AF2711C0B40071968E /* LocationService */,
 				A09249C42711F7700071968E /* Helpers */,
 			);
@@ -293,6 +297,7 @@
 		A0318B5B2710A35A00744D1D /* PresistentStorage */ = {
 			isa = PBXGroup;
 			children = (
+				A09249DD271354DE0071968E /* PreferencesManager */,
 			);
 			path = PresistentStorage;
 			sourceTree = "<group>";
@@ -352,12 +357,13 @@
 			path = Places;
 			sourceTree = "<group>";
 		};
-		A09249BF2711F2430071968E /* Repository */ = {
+		A09249BF2711F2430071968E /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
 				A09249C02711F2A80071968E /* PlacesApiService.swift */,
+				A09249E02713552B0071968E /* PreferencesManager.swift */,
 			);
-			path = Repository;
+			path = Interfaces;
 			sourceTree = "<group>";
 		};
 		A09249C42711F7700071968E /* Helpers */ = {
@@ -394,6 +400,14 @@
 				A09249D1271242A50071968E /* DataConstants.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		A09249DD271354DE0071968E /* PreferencesManager */ = {
+			isa = PBXGroup;
+			children = (
+				A09249DE271354F40071968E /* PreferencesManagerImp.swift */,
+			);
+			path = PreferencesManager;
 			sourceTree = "<group>";
 		};
 		A0FE947D271101E5003A1F33 /* Managers */ = {
@@ -612,11 +626,13 @@
 				A0FE947F27110206003A1F33 /* DiManager.swift in Sources */,
 				A09249BA2711D97C0071968E /* VenuePhotosResponse.swift in Sources */,
 				A09249CE271241780071968E /* URLRequestBuilder.swift in Sources */,
+				A09249DF271354F40071968E /* PreferencesManagerImp.swift in Sources */,
 				A09249C32711F38C0071968E /* ApiClinet+Places.swift in Sources */,
 				A09249A92711AE340071968E /* PlaceCellViewModel.swift in Sources */,
 				A09249B82711D5D70071968E /* VenueResponseModel.swift in Sources */,
 				A09249C82712021F0071968E /* StatusCodes.swift in Sources */,
 				A0FE948327110905003A1F33 /* AppAssembly.swift in Sources */,
+				A09249E12713552B0071968E /* PreferencesManager.swift in Sources */,
 				A09249D4271246410071968E /* PlacesAPIs.swift in Sources */,
 				A0318B5D2710D09500744D1D /* AppCoordinator.swift in Sources */,
 				A09249D8271307CA0071968E /* RxSwift+Extensions.swift in Sources */,

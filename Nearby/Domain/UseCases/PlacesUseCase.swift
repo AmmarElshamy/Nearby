@@ -11,13 +11,17 @@ import RxSwift
 protocol PlacesUseCase {
     func getPlaces(offset: Int, limit: Int, location: Location) -> Single<PaginationResult<[Place]>>
     func getPlacePhoto(placeID: String) -> Single<AppResult<PlacePhoto>>
+    func set(mode: String)
+    func getSavedMode() -> String?
 }
 
 struct placesUseCaseImp: PlacesUseCase {
     private let service: PlacesApiService
+    private let preferencesManager: PreferencesManager
     
-    init(service: PlacesApiService) {
+    init(service: PlacesApiService, preferencesManager: PreferencesManager) {
         self.service = service
+        self.preferencesManager = preferencesManager
     }
     
     func getPlaces(offset: Int, limit: Int, location: Location) -> Single<PaginationResult<[Place]>> {
@@ -45,5 +49,13 @@ struct placesUseCaseImp: PlacesUseCase {
                 return .failure(errorMessage: .somethingWentWrong, statusCode: result.meta.code)
             }
         }
+    }
+    
+    func getSavedMode() -> String? {
+        preferencesManager.getMode()
+    }
+    
+    func set(mode: String) {
+        preferencesManager.set(mode: mode)
     }
 }
